@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { ProductCard } from "./ProductCard.astro";
+import ProductCard from "./ProductCard.astro";
 const products = await getCollection("products");
 ---
 
@@ -18,5 +18,11 @@ const products = await getCollection("products");
 </style>
 
 <ul>
-    {products.map((product) => <li>{product.data.title}</li>)}
+  {
+    products.map((product) => (
+      <li>
+        <ProductCard product={product.data} />
+      </li>
+    ))
+  }
 </ul>
