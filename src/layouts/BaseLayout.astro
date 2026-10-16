@@ -1,4 +1,8 @@
 ---
+import "../styles/reset.css";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+const { pageTitle } = Astro.props;
 // TODO: import "../styles/reset.css" and "../styles/global.css"
 // TODO: import the Header component
 // TODO: read a `pageTitle` prop from Astro.props
@@ -9,8 +13,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- TODO: put the page title in here -->
-    <title>Fake Store</title>
+    <title>Fake Store = {pageTitle}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +26,7 @@
   <body>
     <!-- TODO: render the Header component here -->
     <main>
-      <!-- TODO: render the <slot /> here -->
+      <slot />
     </main>
   </body>
 </html>
