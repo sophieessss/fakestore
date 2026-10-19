@@ -13,9 +13,11 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const pageTitle = product.title;
 ---
-<BaseLayout>
 
-<ProductCard />
+<BaseLayout pageTitle={pageTitle}>
+  
+<ProductCard product={product} />
 
 </BaseLayout>
