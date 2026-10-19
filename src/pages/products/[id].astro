@@ -1,23 +1,27 @@
 ---
 import { getCollection } from "astro:content";
 import ProductCard from "../../components/ProductCard.astro";
+import PrevNext from "../../components/PrevNext.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const products = await getCollection("products");
 
-  return products.map((product) => ({
+  return products.map((product, i) => ({
     params: { id: product.data.id.toString() },
-    props: { product: product.data },
+    props: {
+      product: product.data,
+      next: i < products.length - 1 ? products[i + 1].data : null,
+      prev: i > 0 ? products[i - 1].data : null,
+    },
   }));
 }
 
-const { product } = Astro.props;
+const { product, prev, next } = Astro.props;
 const pageTitle = product.title;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  
-<ProductCard product={product} />
-
+  <ProductCard product={product} />
+  <PrevNext prev={prev} next={next} path="products" />
 </BaseLayout>
